@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class AhoubsuApplication
 
 fun main(args: Array<String>) {
-    runApplication<AhoubsuApplication>(*args)
+	runApplication<AhoubsuApplication>(*args)
 }
