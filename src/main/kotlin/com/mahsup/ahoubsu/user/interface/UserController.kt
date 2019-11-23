@@ -1,4 +1,4 @@
-package com.mahsup.ahoubsu.user
+package com.mahsup.ahoubsu.user.`interface`
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
