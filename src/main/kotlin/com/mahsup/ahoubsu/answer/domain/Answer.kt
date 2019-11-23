@@ -15,4 +15,5 @@ class Answer(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Lon
              var date: LocalDate?) {
     constructor(userId: Long, missionId: Long, imageUrl: String, content: String, emotionType: String, emotionHexa: String,date: LocalDate?) :
             this(null, userId, missionId, imageUrl, content, emotionType, emotionHexa, date)
+
 }
