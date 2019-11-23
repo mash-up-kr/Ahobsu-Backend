@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/missions")
 class MissionController(val missionService: MissionService) {
+//    @ApiOperation(value = "매칭된 방의 미션 정보 가져오는 API")
+//    @ApiResponses(value = [ApiResponse(code = 200, message = "get missions from room")])
     @GetMapping
     fun fetch(): ResponseEntity<Response<MutableList<ResMissionDto>>> {
         val missions = missionService.fetch()
