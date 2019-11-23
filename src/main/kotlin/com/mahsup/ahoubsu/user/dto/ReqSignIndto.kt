@@ -1,10 +1,13 @@
 package com.mahsup.ahoubsu.user.dto
 
-import java.util.*
-
-data class ReqSignUpDto(
+data class ReqSignIndto(
         var email: String,
         var gender: String,
         var nickname: String,
-        var snstype: String,
-        var birthday: Date)
+        var snsType: String,
+        var snsId: String,
+        var refreshDate: String,
+        var birthday: String,
+        var refreshToken: String)
+
+
