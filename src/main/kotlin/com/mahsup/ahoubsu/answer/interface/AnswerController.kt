@@ -1,7 +1,7 @@
 package com.mahsup.ahoubsu.answer.`interface`
 
 import com.mahsup.ahoubsu.answer.domain.Answer
-import com.mahsup.ahoubsu.answer.dto.RepCreateAnswerDto
+import com.mahsup.ahoubsu.answer.dto.ReqCreateAnswerDto
 import com.mahsup.ahoubsu.answer.dto.ReqUpdateAnswerDto
 import com.mahsup.ahoubsu.answer.dto.ResFetchAnswerEmotionDto
 import com.mahsup.ahoubsu.answer.service.AnswerService
@@ -16,23 +16,23 @@ import org.springframework.web.bind.annotation.*
 class AnswerController(var answerService: AnswerService) {
 
     @PostMapping
-    fun create(@RequestHeader(value = "userId") userId: Long, @RequestBody reqCreateAnswerDto: RepCreateAnswerDto): ResponseEntity<Response<Answer>> {
+    fun create(@RequestHeader(value = "userId") userId: Long, @RequestBody reqCreateAnswerDto: ReqCreateAnswerDto): ResponseEntity<Response<Answer>> {
         val answer = answerService.create(userId, reqCreateAnswerDto)
-        val response = Response(200, null, answer)
+        val response = Response(201, null,null,answer)
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
     @PutMapping("/{answerId}")
     fun update(@RequestHeader(value = "userId") userId: Long, @PathVariable(value = "answerId") answerId: Long, @RequestBody reqUpdateAnswerDto: ReqUpdateAnswerDto): ResponseEntity<Response<Answer>> {
         val answer = answerService.edit(userId, answerId, reqUpdateAnswerDto)
-        val response = Response(200, null, answer)
+        val response = Response(answer)
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 
     @GetMapping("/{answerId}")
     fun fetch(@RequestHeader(value = "userId") userId: Long, @PathVariable(value = "answerId") answerId: Long): ResponseEntity<Response<ResFetchAnswerEmotionDto>> {
         val answer= answerService.fetch(userId, answerId)
-        val response = Response(200, null, answer)
+        val response = Response(answer)
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 

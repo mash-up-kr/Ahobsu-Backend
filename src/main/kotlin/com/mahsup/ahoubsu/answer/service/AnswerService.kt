@@ -2,7 +2,7 @@ package com.mahsup.ahoubsu.answer.service
 
 import com.mahsup.ahoubsu.answer.domain.Answer
 import com.mahsup.ahoubsu.answer.domain.AnswerRepository
-import com.mahsup.ahoubsu.answer.dto.RepCreateAnswerDto
+import com.mahsup.ahoubsu.answer.dto.ReqCreateAnswerDto
 import com.mahsup.ahoubsu.answer.dto.ReqUpdateAnswerDto
 import com.mahsup.ahoubsu.answer.dto.ResFetchAnswerEmotionDto
 import org.springframework.stereotype.Service
@@ -10,7 +10,7 @@ import java.time.LocalDate
 
 @Service
 class AnswerService(val answerRepository: AnswerRepository) {
-    fun create(userId: Long, reqCreateAnswerDto: RepCreateAnswerDto): Answer {
+    fun create(userId: Long, reqCreateAnswerDto: ReqCreateAnswerDto): Answer {
         val answer = Answer(userId, reqCreateAnswerDto.missionId, reqCreateAnswerDto.imageUrl, reqCreateAnswerDto.content, reqCreateAnswerDto.emotionType, reqCreateAnswerDto.emotionHexa, LocalDate.now())
         return answerRepository.save(answer)
     }
