@@ -16,13 +16,13 @@ class MissionController(val missionService: MissionService) {
     @GetMapping
     fun fetch(): ResponseEntity<Response<MutableList<ResMissionDto>>> {
         val missions = missionService.fetch()
-        val response = Response(200, null, null, missions)
+        val response = Response(missions)
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
     @PostMapping
     fun create(@RequestBody reqCreateMissionDto: ReqCreateMissionDto): ResponseEntity<Response<ResMissionDto>> {
         val mission = missionService.create(reqCreateMissionDto)
-        val response = Response(201, null, null, mission)
+        val response = Response(201, mission)
         return ResponseEntity.status(HttpStatus.OK).body(response)
     }
 }

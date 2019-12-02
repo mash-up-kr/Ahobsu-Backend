@@ -13,7 +13,17 @@ class Answer(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Lon
              var emotionType: String,
              var emotionHexa: String,
              var date: LocalDate?) {
-    constructor(userId: Long, missionId: Long, imageUrl: String, content: String, emotionType: String, emotionHexa: String,date: LocalDate?) :
+
+    constructor(userId: Long, missionId: Long, imageUrl: String, content: String, emotionType: String, emotionHexa: String, date: LocalDate?) :
             this(null, userId, missionId, imageUrl, content, emotionType, emotionHexa, date)
 
+    fun updateInfo(imageUrl: String,
+                   content: String,
+                   emotionType: String,
+                   emotionHexa: String) {
+        this.imageUrl = imageUrl
+        this.content = content
+        this.emotionHexa = emotionHexa
+        this.emotionType = emotionType
+    }
 }

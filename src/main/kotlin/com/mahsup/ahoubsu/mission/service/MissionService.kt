@@ -11,14 +11,14 @@ import java.util.stream.Collectors
 @Service
 class MissionService(val missionRepository: MissionRepository) {
     fun fetch(): MutableList<ResMissionDto>? {
-        val missions = missionRepository.fetch().stream().map { mission -> ResMissionDto(mission) }.collect(Collectors.toList())
+        val missions = missionRepository.fetch().stream().map { mission -> ResMissionDto(mission.id, mission.title, mission.isContent, mission.isContent) }.collect(Collectors.toList())
         println(LocalDate.now())
         return missions
     }
+
     fun create(reqCreateMissionDto: ReqCreateMissionDto): ResMissionDto {
         val mission = Mission(reqCreateMissionDto.title, reqCreateMissionDto.isContent, reqCreateMissionDto.isImage)
-        missionRepository.save((mission))
-
-        return ResMissionDto(mission)
+        missionRepository.save(mission)
+        return ResMissionDto(mission.id, mission.title, mission.isContent, mission.isContent)
     }
 }
