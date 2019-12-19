@@ -1,18 +1,14 @@
 package com.mahsup.ahoubsu.user.userService
 
-import com.mahsup.ahoubsu.user.userService.JwtService
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.stereotype.Service
-import org.springframework.web.context.request.RequestContextHolder
-import org.springframework.web.context.request.ServletRequestAttributes
 import java.io.UnsupportedEncodingException
-import java.util.*
 
 @Service
-class JwtServiceImpl : JwtService {
+class JwtService() {
     private fun generateKey(): ByteArray? {
         var key: ByteArray? = null
         try {
@@ -23,7 +19,7 @@ class JwtServiceImpl : JwtService {
         return key
     }
 
-    override fun isUsable(jwt: String?): Boolean {
+    fun isUsable(jwt: String?): Boolean {
         return try {
             val claims = Jwts.parser()
                     .setSigningKey(generateKey())
@@ -37,7 +33,7 @@ class JwtServiceImpl : JwtService {
         }
     }
 
-    override fun <T> create(key: String, data: T, subject: String?): String? {
+    fun <T> create(key: String, data: T, subject: String?): String? {
         return Jwts.builder()
                 .setHeaderParam("type", "JWT")
                 .setHeaderParam("regDate", System.currentTimeMillis())
@@ -47,14 +43,12 @@ class JwtServiceImpl : JwtService {
                 .compact()
     }
 
-    override fun get(key: String?): Map<String?, Any?>? {
-        val request = (RequestContextHolder.currentRequestAttributes() as ServletRequestAttributes).request
-        val jwt = request.getHeader("Authorization")
+    fun get(key: String?): Any? {
         var claims: Jws<Claims>? = null
         claims = try {
             Jwts.parser()
                     .setSigningKey(SALT.toByteArray(charset("UTF-8")))
-                    .parseClaimsJws(jwt)
+                    .parseClaimsJws(key)
         } catch (e: Exception) {
             println(e.toString())
             throw Error()
@@ -63,13 +57,11 @@ class JwtServiceImpl : JwtService {
 			testMap.put("memberId", 2);
 			return testMap;*/
         }
-        return claims.body[key] as LinkedHashMap<String?, Any?>?
+        println(claims.body["y"])
+        return  claims.body["y"]
     }
 
-    override val memberId: Int
-        get() = this["member"]!!["memberId"] as Int
-
     companion object {
-        private const val SALT = "luvookSecret"
+        private const val SALT = "yuchoco"
     }
 }
