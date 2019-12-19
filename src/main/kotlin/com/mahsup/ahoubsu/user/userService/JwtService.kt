@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import java.io.UnsupportedEncodingException
 
 @Service
-class JwtService() {
+class JwtService {
     private fun generateKey(): ByteArray? {
         var key: ByteArray? = null
         try {
@@ -57,7 +57,6 @@ class JwtService() {
 			testMap.put("memberId", 2);
 			return testMap;*/
         }
-        println(claims.body["y"])
         return  claims.body["y"]
     }
 
