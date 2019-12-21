@@ -1,8 +1,8 @@
 package com.mahsup.ahoubsu.mission.`interface`
 
+import com.mahsup.ahoubsu.file.service.FileService
 import com.mahsup.ahoubsu.mission.dto.ReqCreateMissionDto
 import com.mahsup.ahoubsu.mission.dto.ResMissionDto
-import com.mahsup.ahoubsu.mission.service.MissionService
 import com.mahsup.ahoubsu.model.Response
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/missions")
-class MissionController(val missionService: MissionService) {
+class MissionController(val missionService: FileService) {
 //    @ApiOperation(value = "매칭된 방의 미션 정보 가져오는 API")
 //    @ApiResponses(value = [ApiResponse(code = 200, message = "get missions from room")])
     @GetMapping

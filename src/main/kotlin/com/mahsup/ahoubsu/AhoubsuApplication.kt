@@ -8,4 +8,6 @@ class AhoubsuApplication
 
 fun main(args: Array<String>) {
 	runApplication<AhoubsuApplication>(*args)
+
+	//
 }
